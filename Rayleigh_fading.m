@@ -1,15 +1,19 @@
+% Rayleigh fading simulation
 clear 
-freq = 3e9; % frequency [Hz]
-V    = 0.5; % velocity of Rx [m/s]
-N    = 100; % number of arrival waves
-phai_i = rand(1,N)*2*pi; % arrival angle [rad]
-zeta_i = rand(1,N)*2*pi; % initial phase [rad]
-lambda = physconst('LightSpeed') / freq; % wavelength [m]
-count  = 1;
 
+%% parameters setting
+freq     = 3e9; % frequency [Hz]
+velocity = 0.5; % velocity of Rx [m/s]
+num_path = 100; % number of arrival waves
+phai_i   = rand(1,num_path)*2*pi; % arrival angle [rad]
+zeta_i   = rand(1,num_path)*2*pi; % initial phase [rad]
+lambda   = physconst('LightSpeed') / freq; % wavelength [m]
+count    = 1;
+
+%% calculate the amplitude
 for t=0:0.001:1
     R(count,1)=t;
-    R(count,2)=1/sqrt(N)*sum(exp(1i*(2*pi*V*t*cos(phai_i)/lambda+zeta_i))); % amplitude
+    R(count,2)=1/sqrt(num_path)*sum(exp(1i*(2*pi*velocity*t*cos(phai_i)/lambda+zeta_i))); % amplitude
     R(count,3)=20*log10(abs(R(count,2))); % amplitude in dB
     count=count+1;
 end
