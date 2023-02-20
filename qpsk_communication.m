@@ -1,3 +1,4 @@
+% QPSK Simulation
 clear
 
 Nsym = 6;           % Filter span in symbol durations
