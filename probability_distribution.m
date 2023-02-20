@@ -1,3 +1,4 @@
+% plot the PDF and CDF of the probability distributions
 clear
 
 %% parameter
